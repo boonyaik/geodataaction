@@ -2,7 +2,7 @@ name: ISS Tracker
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # every minute
+    - cron: "* * * * *"   # every minute
   workflow_dispatch:       # allow manual run
 
 jobs:
@@ -25,3 +25,8 @@ jobs:
       - name: Run ISS script
         run: python AcquireData.py
 
+      - name: Save output file as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: iss-data
+          path: output.txt
